@@ -11,9 +11,6 @@ android {
         minSdk = Apps.minSdk
         targetSdk = Apps.targetSdk
     }
-    buildFeatures{
-        buildConfig = true
-    }
     compileOptions {
         sourceCompatibility = Apps.sourceCompat
         targetCompatibility = Apps.targetCompat

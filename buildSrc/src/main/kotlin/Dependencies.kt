@@ -1,8 +1,18 @@
 object Dependencies {
 
     object Kotlin {
-        const val Coroutine = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.Kotlin.Coroutines}"
-        const val ImmutableCollections = "org.jetbrains.kotlinx:kotlinx-collections-immutable:${Versions.Kotlin.ImmutableCollections}"
+        const val Coroutine =
+            "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.Kotlin.Coroutines}"
+        const val ImmutableCollections =
+            "org.jetbrains.kotlinx:kotlinx-collections-immutable:${Versions.Kotlin.ImmutableCollections}"
+    }
+
+    object Firebase {
+        const val Bom = "com.google.firebase:firebase-bom:${Versions.Firebase.Bom}"
+    }
+
+    object Login {
+        const val Kakao = "com.kakao.sdk:v2-user:${Versions.Login.Kakao}"
     }
 
     object Hilt {
@@ -28,11 +38,13 @@ object Dependencies {
     )
 
     object Paging {
-        const val Runtime = "androidx.paging:paging-runtime:${Versions.Jetpack.Paging}" //paging runtime
-        const val Common = "androidx.paging:paging-common:${Versions.Jetpack.Paging}" //domain을 위한 안드로이드 의존성 제거
+        const val Runtime =
+            "androidx.paging:paging-runtime:${Versions.Jetpack.Paging}" //paging runtime
+        const val Common =
+            "androidx.paging:paging-common:${Versions.Jetpack.Paging}" //domain을 위한 안드로이드 의존성 제거
     }
 
-    object AppCompat{
+    object AppCompat {
         const val Core = "androidx.appcompat:appcompat:${Versions.AppCompat.Core}"
     }
 
@@ -49,6 +61,10 @@ object Dependencies {
             "androidx.lifecycle:lifecycle-runtime-compose:${Versions.Compose.Lifecycle}", // lifecycle에 맞게 state 수집을 위함
             "io.coil-kt:coil-compose:${Versions.Compose.Coil}",
         )
+    }
+
+    object Logging{
+        const val Timber = "com.jakewharton.timber:timber:${Versions.Timber.Core}"
     }
 
     val Test = listOf(

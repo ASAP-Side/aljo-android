@@ -4,6 +4,15 @@ object Versions {
         const val Gradle = "8.1.0"
     }
 
+    object Firebase {
+        const val GoogleServices = "4.3.15"
+        const val Bom = "32.0.0"
+    }
+
+    object Login {
+        const val Kakao = "2.13.0"
+    }
+
     object Kotlin {
         const val Core = "1.8.10"
         const val Coroutines = "1.6.4"
@@ -29,7 +38,7 @@ object Versions {
         const val Inject = "1"
     }
 
-    object AppCompat{
+    object AppCompat {
         const val Core = "1.4.1"
     }
 
@@ -49,7 +58,7 @@ object Versions {
         const val Strikt = "0.34.1"
     }
 
-    object Timber{
+    object Timber {
         const val Core = "5.0.1"
     }
 }

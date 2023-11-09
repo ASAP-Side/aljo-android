@@ -6,4 +6,5 @@ plugins {
     id("org.jetbrains.kotlin.jvm") version Versions.Kotlin.Core apply false
     id("org.jetbrains.kotlin.kapt") version Versions.Kotlin.Core apply false
     id("com.google.dagger.hilt.android") version Versions.Jetpack.Hilt apply false
+    id("com.google.gms.google-services") version Versions.Firebase.GoogleServices apply false
 }
