@@ -6,8 +6,8 @@ import com.kakao.sdk.common.model.ClientError
 import com.kakao.sdk.common.model.ClientErrorCause
 import com.kakao.sdk.user.UserApiClient
 import dagger.hilt.android.qualifiers.ActivityContext
-import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.suspendCancellableCoroutine
+import team.asap.aljo.domain.common.exception.KakaoCanceledException
 import javax.inject.Inject
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
@@ -30,17 +30,21 @@ class KakaoLoginProvider @Inject constructor(
             UserApiClient.instance.loginWithKakaoTalk(activityContext) { token: OAuthToken?, error: Throwable? ->
                 if (error != null) {
                     // 카카오 로그인 취소 에러는 사용자에 의해 발생하므로, 따로 예외를 던져주지 않음
-                    if (error is ClientError && error.reason == ClientErrorCause.Cancelled) {
-                        continuation.cancel()
-                    }
-                    UserApiClient.instance.loginWithKakaoAccount(activityContext) { accountToken: OAuthToken?, accountError: Throwable? ->
-                        when {
-                            accountError != null -> {
-                                continuation.resumeWithException(accountError)
-                            }
+                    if (error.isCanceledError()) {
+                        continuation.resumeWithException(KakaoCanceledException)
+                    } else {
+                        UserApiClient.instance.loginWithKakaoAccount(activityContext) { accountToken: OAuthToken?, accountError: Throwable? ->
+                            when {
+                                accountError != null -> {
+                                    if (error.isCanceledError()) {
+                                        continuation.resumeWithException(KakaoCanceledException)
+                                    }
+                                    continuation.resumeWithException(accountError)
+                                }
 
-                            accountToken != null -> {
-                                continuation.resume(accountToken)
+                                accountToken != null -> {
+                                    continuation.resume(accountToken)
+                                }
                             }
                         }
                     }
@@ -56,7 +60,11 @@ class KakaoLoginProvider @Inject constructor(
             UserApiClient.instance.loginWithKakaoAccount(activityContext) { token: OAuthToken?, error: Throwable? ->
                 when {
                     error != null -> {
-                        continuation.resumeWithException(error)
+                        if (error.isCanceledError()) {
+                            continuation.resumeWithException(KakaoCanceledException)
+                        } else {
+                            continuation.resumeWithException(error)
+                        }
                     }
 
                     token != null -> {
@@ -67,3 +75,7 @@ class KakaoLoginProvider @Inject constructor(
         }
     }
 }
+
+
+private fun Throwable.isCanceledError() =
+    this is ClientError && this.reason == ClientErrorCause.Cancelled
