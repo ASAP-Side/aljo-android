@@ -17,11 +17,8 @@ android {
         versionCode = Apps.versionCode
         versionName = Apps.versionName
 
-        buildConfigField(
-            "String",
-            "KAKAO_NATIVE_APP_KEY",
-            getValueFromLocalProperties("KAKAO_NATIVE_APP_KEY")
-        )
+        val kakaoNativeAppKey = getValueFromLocalProperties("KAKAO_NATIVE_APP_KEY")
+        buildConfigField("String", "KAKAO_NATIVE_APP_KEY", kakaoNativeAppKey)
     }
 
     compileOptions {

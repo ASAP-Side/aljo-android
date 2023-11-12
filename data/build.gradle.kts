@@ -1,3 +1,5 @@
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+
 plugins {
     id("com.android.library")
     id("kotlin-android")
@@ -10,6 +12,9 @@ android {
     defaultConfig {
         minSdk = Apps.minSdk
         targetSdk = Apps.targetSdk
+
+        val kakaoNativeAppKey = getValueFromLocalProperties("KAKAO_NATIVE_APP_KEY")
+        manifestPlaceholders["KAKAO_NATIVE_APP_KEY"] = kakaoNativeAppKey
     }
     compileOptions {
         sourceCompatibility = Apps.sourceCompat
@@ -28,5 +33,11 @@ dependencies {
     implementation(Dependencies.Room.Core)
     implementation(Dependencies.Paging.Runtime)
     implementation(Dependencies.Kotlin.Coroutine)
+    implementation(Dependencies.Login.Kakao)
+    implementation(Dependencies.Logging.Timber)
     Dependencies.Network.forEach(::implementation)
+}
+
+fun getValueFromLocalProperties(propertyKey: String): String {
+    return gradleLocalProperties(rootDir).getProperty(propertyKey)
 }
