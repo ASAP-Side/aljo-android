@@ -1,15 +1,17 @@
 package team.asap.aljo.domain.login.usecase
 
-import team.asap.aljo.domain.auth.repsitory.AuthRepository
-import team.asap.aljo.domain.login.model.LoginInfo
+import team.asap.aljo.domain.login.model.LoginType
 import team.asap.aljo.domain.login.repository.LoginRepository
 import javax.inject.Inject
 
+//@ActivityScoped
 class LoginUseCase @Inject constructor(
     private val loginRepository: LoginRepository,
-    private val authRepository: AuthRepository,
 ) {
-    suspend fun kakaoLogin(): LoginInfo {
-        return loginRepository.kakaoLogin()
+    suspend operator fun invoke(loginType: LoginType) {
+        when (loginType) {
+            is LoginType.Kakao -> loginRepository.kakaoLogin(loginType.accessToken)
+        }
+
     }
 }
