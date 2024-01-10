@@ -1,3 +1,5 @@
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+
 plugins {
     id("com.android.library")
     id("kotlin-android")
@@ -29,5 +31,6 @@ dependencies {
     implementation(Dependencies.Paging.Runtime)
     implementation(Dependencies.Kotlin.Coroutine)
     implementation(Dependencies.Logging.Stetho)
+    implementation(Dependencies.Logging.Timber)
     Dependencies.Network.forEach(::implementation)
 }
