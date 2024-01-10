@@ -28,5 +28,6 @@ dependencies {
     implementation(Dependencies.Room.Core)
     implementation(Dependencies.Paging.Runtime)
     implementation(Dependencies.Kotlin.Coroutine)
+    implementation(Dependencies.Logging.Stetho)
     Dependencies.Network.forEach(::implementation)
 }

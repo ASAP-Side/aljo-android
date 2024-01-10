@@ -47,7 +47,7 @@ dependencies {
 
     // Add Firebase Dependencies
     //implementation(platform(Dependencies.Firebase.Bom))
-
+    implementation(Dependencies.Logging.Stetho)
     implementation(Dependencies.Hilt.Android)
     kapt(Dependencies.Hilt.Kapt)
 

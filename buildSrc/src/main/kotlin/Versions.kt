@@ -26,6 +26,7 @@ object Versions {
     object Network {
         const val Retrofit = "2.9.0"
         const val OkHttp = "4.10.0"
+        const val Stetho = "1.6.0"
     }
 
     object Jetpack {

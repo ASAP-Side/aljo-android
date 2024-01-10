@@ -65,6 +65,7 @@ object Dependencies {
 
     object Logging{
         const val Timber = "com.jakewharton.timber:timber:${Versions.Timber.Core}"
+        const val Stetho = "com.facebook.stetho:stetho:${Versions.Network.Stetho}"
     }
 
     val Test = listOf(
