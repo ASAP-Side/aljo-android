@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.material.Text
+import androidx.compose.ui.text.font.FontWeight
 import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -28,8 +29,8 @@ class MainActivity : ComponentActivity() {
             AsapTheme {
                 Text(
                     text = "test",
-                    style = typography.body(
-                        size = 16,
+                    style = typography.pretendard(
+                        15, FontWeight.Medium
                     ),
                     color = primary.red01,
                 )

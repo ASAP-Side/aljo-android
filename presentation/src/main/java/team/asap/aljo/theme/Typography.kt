@@ -21,33 +21,25 @@ val FontWeight.Companion.Regular get() = Normal
 
 @Immutable
 class AsapTypography {
-    fun headLine1(
+    fun pretendard(
         size: Int,
-        isBold: Boolean = true,
+        fontWeight: FontWeight = FontWeight.Bold
     ) = TextStyle(
         fontFamily = Pretendards,
-        fontWeight = if(isBold){
-            FontWeight.Bold
-        }else{
-             FontWeight.SemiBold
-        },
+        fontWeight = fontWeight,
         fontSize = size.sp,
-        lineHeight = 30.sp,
+        lineHeight = size.getLineHeightBySize(),
         letterSpacing = (-2).sp,
     )
+}
 
-    fun body(
-        size: Int,
-        isMedium: Boolean = true,
-    ) = TextStyle(
-        fontFamily = Pretendards,
-        fontWeight = if(isMedium){
-            FontWeight.Medium
-        }else{
-            FontWeight.Regular
-        },
-        fontSize = size.sp,
-    )
+private fun Int.getLineHeightBySize() = when (this) {
+    11 -> (this + 6).sp
+    12 -> (this + 6).sp
+    15 -> (this + 9).sp
+    else -> {
+        (this + 8).sp
+    }
 }
 
 internal val LocalAsapTypography = staticCompositionLocalOf { AsapTypography() }
