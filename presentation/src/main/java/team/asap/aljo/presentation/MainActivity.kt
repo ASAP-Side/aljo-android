@@ -1,17 +1,19 @@
 package team.asap.aljo.presentation
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.compose.material.Text
 import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import team.asap.aljo.domain.login.model.LoginType
 import team.asap.aljo.presentation.login.KakaoLoginProvider
-import team.asap.aljo.presentation.login.LoginScreen
 import team.asap.aljo.presentation.login.LoginViewModel
+import team.asap.aljo.theme.AsapTheme
+import team.asap.aljo.theme.AsapTheme.primary
+import team.asap.aljo.theme.AsapTheme.typography
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -20,17 +22,18 @@ class MainActivity : ComponentActivity() {
 
     @Inject
     lateinit var kakaoLoginProvider: KakaoLoginProvider
-
-    init {
-        Log.d("context", "constructor [${this}]")
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.d("context", "[${this}] baseContext[${this.baseContext}] [${viewModel}]")
         setContent {
-            LoginScreen(onClickLoginButton = {
-            })
+            AsapTheme {
+                Text(
+                    text = "test",
+                    style = typography.body(
+                        size = 16,
+                    ),
+                    color = primary.red01,
+                )
+            }
         }
     }
 
