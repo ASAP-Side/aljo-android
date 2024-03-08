@@ -11,7 +11,8 @@ internal class AndroidFeaturePlugin : Plugin<Project> {
             apply<AndroidLibraryPlugin>()
 
             dependencies {
-
+                add("implementation", project(":core:domain"))
+                add("implementation", project(":core:design-system"))
                 add("implementation", libs.findLibrary("core.ktx").get())
                 add("implementation", libs.findLibrary("appcompat").get())
                 add("implementation", libs.findBundle("lifecycle").get())
@@ -19,7 +20,5 @@ internal class AndroidFeaturePlugin : Plugin<Project> {
                 add("testImplementation", kotlin("test"))
             }
         }
-
-
     }
 }
