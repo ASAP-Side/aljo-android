@@ -35,3 +35,4 @@ include(":core:data")
 
 // feature
 include(":feature:login")
+include(":core:design-system")
