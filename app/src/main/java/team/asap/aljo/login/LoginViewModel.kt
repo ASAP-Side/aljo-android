@@ -1,4 +1,4 @@
-package team.asap.aljo.presentation.login
+package team.asap.aljo.login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

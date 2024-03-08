@@ -1,56 +1,50 @@
 import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
 
 plugins {
-    id("com.android.application")
-    id("kotlin-android")
-    id("kotlin-kapt")
-    id("dagger.hilt.android.plugin")
-    id("com.google.gms.google-services")
+    alias(libs.plugins.aljo.android.application)
+    alias(libs.plugins.aljo.android.compose)
 }
 
 android {
-    compileSdk = Apps.compileSdk
     namespace = "team.asap.aljo"
+
+    packaging {
+        resources.excludes.add("META-INF/LICENSE*")
+    }
+
     defaultConfig {
-        minSdk = Apps.minSdk
-        targetSdk = Apps.targetSdk
-        versionCode = Apps.versionCode
-        versionName = Apps.versionName
+        applicationId = "team.asap.aljo"
+        versionCode = libs.versions.versionCode.get().toInt()
+        versionName = libs.versions.appVersion.get()
 
-        val kakaoNativeAppKey = getValueFromLocalProperties("KAKAO_NATIVE_APP_KEY")
+        val kakaoNativeAppKey = gradleLocalProperties(rootDir).getProperty("KAKAO_NATIVE_APP_KEY")
         buildConfigField("String", "KAKAO_NATIVE_APP_KEY", kakaoNativeAppKey)
+
+        manifestPlaceholders["KAKAO_NATIVE_APP_KEY"] = kakaoNativeAppKey
     }
 
-    compileOptions {
-        sourceCompatibility = Apps.sourceCompat
-        targetCompatibility = Apps.targetCompat
-    }
-
-    kotlinOptions {
-        jvmTarget = Apps.jvmTarget
-    }
-
-    buildFeatures {
-        buildConfig = true
-    }
 }
 
 dependencies {
-    implementation(project(Modules.Presentation))
-    implementation(project(Modules.Domain))
-    implementation(project(Modules.Data))
+    // core
+    implementation(projects.core.domain)
+    implementation(projects.core.data)
 
-    implementation(Dependencies.Login.Kakao)
+    // feature
+    implementation(projects.feature.login)
 
-    // Add Firebase Dependencies
-    //implementation(platform(Dependencies.Firebase.Bom))
-
-    implementation(Dependencies.Hilt.Android)
-    kapt(Dependencies.Hilt.Kapt)
-
-    implementation(Dependencies.Logging.Timber)
-}
-
-fun getValueFromLocalProperties(propertyKey: String): String {
-    return gradleLocalProperties(rootDir).getProperty(propertyKey)
+    // library
+    implementation(libs.startup)
+    implementation(libs.kakao.login)
+    implementation(libs.lifecycle)
+    implementation(libs.activity.compose)
+    implementation(platform(libs.compose.bom))
+    implementation(libs.ui)
+    implementation(libs.ui.graphics)
+    implementation(libs.ui.tooling.preview)
+    implementation(libs.material3.compose)
+    androidTestImplementation(platform(libs.compose.bom))
+    androidTestImplementation(libs.ui.test.junit4)
+    debugImplementation(libs.ui.tooling)
+    debugImplementation(libs.ui.test.manifest)
 }

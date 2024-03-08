@@ -1,4 +1,4 @@
-package team.asap.aljo.presentation
+package team.asap.aljo
 
 import android.os.Bundle
 import android.util.Log
@@ -9,9 +9,9 @@ import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import team.asap.aljo.domain.login.model.LoginType
-import team.asap.aljo.presentation.login.KakaoLoginProvider
-import team.asap.aljo.presentation.login.LoginScreen
-import team.asap.aljo.presentation.login.LoginViewModel
+import team.asap.aljo.login.KakaoLoginProvider
+import team.asap.aljo.login.LoginScreen
+import team.asap.aljo.login.LoginViewModel
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -29,8 +29,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         Log.d("context", "[${this}] baseContext[${this.baseContext}] [${viewModel}]")
         setContent {
-            LoginScreen(onClickLoginButton = {
-            })
+            LoginScreen(onClickLoginButton = { kakaoLogin() })
         }
     }
 
