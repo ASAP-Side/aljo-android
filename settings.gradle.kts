@@ -1,4 +1,9 @@
+rootProject.name = "aljo-android"
+
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+
 pluginManagement {
+    includeBuild("build-logic")
     repositories {
         google()
         mavenCentral()
@@ -6,6 +11,7 @@ pluginManagement {
         maven("https://devrepo.kakao.com/nexus/content/groups/public/") // for kakaoLogin
     }
 }
+
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
@@ -15,10 +21,18 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "aljo-android"
-include(
-    ":app",
-    ":data",
-    ":domain",
-    ":presentation",
-)
+// app
+include(":app")
+
+// core
+//include(":core:design-system")
+//include(":core:local")
+include(":core:domain")
+include(":core:data")
+//include(":core:remote")
+//include(":core:navigation")
+//include(":core:ui")
+
+// feature
+include(":feature:login")
+include(":core:design-system")
