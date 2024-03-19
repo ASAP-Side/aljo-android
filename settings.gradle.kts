@@ -29,10 +29,9 @@ include(":core:domain")
 include(":core:data")
 include(":core:design-system")
 include(":core:remote")
-//include(":core:local")
+include(":core:local")
 //include(":core:navigation")
 //include(":core:ui")
 
 // feature
 include(":feature:login")
-

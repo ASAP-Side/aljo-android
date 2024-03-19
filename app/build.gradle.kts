@@ -31,6 +31,7 @@ dependencies {
     implementation(projects.core.data)
     implementation(projects.core.designSystem)
     implementation(projects.core.remote)
+    implementation(projects.core.local)
 
     // feature
     implementation(projects.feature.login)
