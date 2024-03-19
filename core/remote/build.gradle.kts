@@ -1,29 +1,19 @@
-import org.jetbrains.kotlin.konan.properties.Properties
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
 
 plugins {
     alias(libs.plugins.aljo.android.library)
 }
 
-val properties = Properties().apply {
-    load(rootProject.file("local.properties").inputStream())
-}
 android {
     namespace = "team.asap.aljo.remote"
 
     buildTypes {
+        val aljoBaseUrl = gradleLocalProperties(rootDir).getProperty("ALJO_BASE_URL")
         getByName("release") {
-            buildConfigField(
-                "String",
-                "ALJO_BASE_URL",
-                properties.getProperty("ALJO_BASE_URL")
-            )
+            buildConfigField("String", "ALJO_BASE_URL", aljoBaseUrl)
         }
         getByName("debug") {
-            buildConfigField(
-                "String",
-                "ALJO_BASE_URL",
-                properties.getProperty("ALJO_BASE_URL")
-            )
+            buildConfigField("String", "ALJO_BASE_URL", aljoBaseUrl)
         }
     }
 }
