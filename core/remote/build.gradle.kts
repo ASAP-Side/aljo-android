@@ -34,5 +34,4 @@ dependencies {
     implementation(libs.bundles.retrofit)
     implementation(platform(libs.okhttp.bom))
     implementation(libs.okhttp.logging.interceptor)
-
 }
