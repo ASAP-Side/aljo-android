@@ -21,6 +21,7 @@ plugins {
     alias(libs.plugins.dagger.hilt) apply false
     alias(libs.plugins.ksp) apply false
     alias(libs.plugins.junit5) apply false
+    alias(libs.plugins.org.jetbrains.kotlin.jvm) apply false
 }
 
 tasks.register("clean", Delete::class) {
