@@ -23,7 +23,7 @@ desugarJdk = "2.0.4"
 dagger-hilt = "2.50"
 dagger-hilt-navigation-compose = "1.0.0"
 compose-bom = "2024.01.00"
-room = "2.5.2"
+room = "2.6.1"
 
 # material + google
 material = "1.11.0"
