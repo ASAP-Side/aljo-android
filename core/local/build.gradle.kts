@@ -9,5 +9,7 @@ android {
 dependencies {
     implementation(projects.core.data)
 
-    implementation(libs.bundles.room)
+    implementation(libs.security)
+    implementation(libs.room.core)
+    ksp(libs.room.compiler)
 }

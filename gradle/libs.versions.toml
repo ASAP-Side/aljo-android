@@ -198,4 +198,3 @@ compose = ["ui", "ui-graphics", "ui-tooling", "ui-tooling-preview", "material3-c
 retrofit = ["retrofit", "retrofit-converter-gson"]
 junit5 = ["junit5", "junit5-engine", "junit5-params", "junit5-vintage"]
 androidx-android-test = ["androidx-test-core", "androidx-test-espresso", "androidx-test-espresso-intents", "androidx-test-junit", "androidx-test-junit-ktx", "androidx-test-rules", "androidx-test-runner", "androidx-test-truth"]
-room = ["room-core", "room-compiler"]
