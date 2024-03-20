@@ -22,6 +22,7 @@ android {
 
         manifestPlaceholders["KAKAO_NATIVE_APP_KEY"] = kakaoNativeAppKey
     }
+
 }
 
 dependencies {
