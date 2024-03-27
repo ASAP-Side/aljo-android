@@ -4,8 +4,9 @@ import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
+import javax.inject.Inject
 
-class NavigationManagerImpl : NavigationManager {
+class NavigationManagerImpl @Inject constructor() : NavigationManager {
     private val _commands = MutableSharedFlow<NavigationCommand>(
         replay = 0,
         extraBufferCapacity = 2,

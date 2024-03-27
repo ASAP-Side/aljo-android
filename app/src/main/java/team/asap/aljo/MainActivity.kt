@@ -19,8 +19,10 @@ import kotlinx.coroutines.launch
 import team.asap.aljo.domain.login.model.LoginType
 import team.asap.aljo.login.KakaoLoginProvider
 import team.asap.aljo.login.LoginViewModel
+import team.asap.aljo.login.addLoginNavigator
 import team.asap.aljo.navigation.NavigationManager
 import team.asap.aljo.navigation.NavigationType
+import team.asap.aljo.navigation.directions.LoginNavigationCommand
 import team.asap.aljo.theme.AsapTheme
 import timber.log.Timber
 import javax.inject.Inject
@@ -43,9 +45,8 @@ class MainActivity : ComponentActivity() {
                     navigationManager = navigationManager,
                     navController = navController,
                 )
-                NavHost(navController = navController, startDestination = "profile") {
-
-                    // Add more destinations similarly.
+                NavHost(navController = navController, startDestination = LoginNavigationCommand.destination) {
+                    addLoginNavigator()
                 }
             }
         }
@@ -69,6 +70,7 @@ class MainActivity : ComponentActivity() {
             }.launchIn(this)
         }
     }
+
 
     private fun kakaoLogin() { // 예외적으로 Activity 에서 비즈니스 로직 호출
         lifecycleScope.launch {
