@@ -1,5 +1,3 @@
-import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
-
 plugins {
     alias(libs.plugins.aljo.android.feature)
     alias(libs.plugins.aljo.android.compose)
@@ -11,5 +9,5 @@ android {
 }
 
 dependencies {
-
+    implementation(projects.core.navigation)
 }
