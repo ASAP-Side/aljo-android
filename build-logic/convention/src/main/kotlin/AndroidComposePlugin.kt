@@ -1,9 +1,11 @@
 import com.android.build.gradle.BaseExtension
-import utils.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.getByType
+import org.gradle.kotlin.dsl.withType
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import utils.libs
 
 internal class AndroidComposePlugin : Plugin<Project> {
     override fun apply(target: Project) =
@@ -15,6 +17,19 @@ internal class AndroidComposePlugin : Plugin<Project> {
                 composeOptions {
                     kotlinCompilerExtensionVersion =
                         libs.findVersion("composeCompiler").get().toString()
+                }
+            }
+
+            tasks.withType<KotlinCompile>().configureEach {
+                kotlinOptions {
+                    freeCompilerArgs += listOf(
+                        "-P",
+                        "plugin:androidx.compose.compiler.plugins.kotlin:metricsDestination=$projectDir/metrics/compose-metrics"
+                    )
+                    freeCompilerArgs += listOf(
+                        "-P",
+                        "plugin:androidx.compose.compiler.plugins.kotlin:reportsDestination=$projectDir/report/compose-reports"
+                    )
                 }
             }
 

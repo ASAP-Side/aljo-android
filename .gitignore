@@ -8,5 +8,6 @@
 .externalNativeBuild
 .cxx
 local.properties
-/report
+report/
+metrics/
 google-services.json
