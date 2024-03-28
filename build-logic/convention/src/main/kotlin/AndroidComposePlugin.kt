@@ -24,11 +24,11 @@ internal class AndroidComposePlugin : Plugin<Project> {
                 kotlinOptions {
                     freeCompilerArgs += listOf(
                         "-P",
-                        "plugin:androidx.compose.compiler.plugins.kotlin:metricsDestination=$rootDir/report/compose-metrics"
+                        "plugin:androidx.compose.compiler.plugins.kotlin:metricsDestination=$projectDir/metrics/compose-metrics"
                     )
                     freeCompilerArgs += listOf(
                         "-P",
-                        "plugin:androidx.compose.compiler.plugins.kotlin:reportsDestination=$rootDir/report/compose-metrics"
+                        "plugin:androidx.compose.compiler.plugins.kotlin:reportsDestination=$projectDir/report/compose-reports"
                     )
                 }
             }
