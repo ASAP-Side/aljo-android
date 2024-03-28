@@ -6,7 +6,8 @@ import team.asap.aljo.local.database.dao.DummyDAO
 import team.asap.aljo.local.database.entity.DummyData
 
 @Database(
-    entities = [DummyData::class],
+    // @Gun Hyung TODO : 추후 데이터베이스 관련 작업시 Entity 추가
+    // entities = [DummyData::class],
     version = 1,
     exportSchema = true,
 )
